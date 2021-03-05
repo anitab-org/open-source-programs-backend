@@ -46,6 +46,13 @@ INSTALLED_APPS = [
     "corsheaders",
     "osp",
     "token_auth",
+    # For Social Authentication
+    "dj_rest_auth",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
 ]
 
 MIDDLEWARE = [
@@ -81,10 +88,15 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
     "DEFAULT_PARSER_CLASSES": ["rest_framework.parsers.JSONParser"],
     "DEFAULT_AUTHENTICATION_CLASSES": (
+        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
 }
+
+SITE_ID = 1
+
+REST_USE_JWT = True
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=2),
@@ -158,3 +170,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = "/static/"
+
+ACCOUNT_EMAIL_VERIFICATION = "none"
+
+if os.environ.get("GOOGLE_CALLBACK_URL"):
+    GOOGLE_CALLBACK_URL = os.getenv("GOOGLE_CALLBACK_URL")
+else:
+    GOOGLE_CALLBACK_URL = "http://localhost:3000/login"

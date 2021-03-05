@@ -86,7 +86,8 @@ Next follow these instructions.
    ```
    python manage.py migrate
    ```
-7. To run the server:
+7. To setup Social Auth for backend see [this](#Setup-Social-Auth).
+8. To run the server:
     ```
     python manage.py runserver
     ```
@@ -132,7 +133,23 @@ Add it to your .env file as follows:
 ```
 export SENDGRID_API_KEY=<your-sendgrid-api-key>
 ```
+3. `GOOGLE_CALLBACK_URL` - For using Google authentication the **Callback URL** is required by Google API. Add this env variable in `.env` file or export it to use **Callback URL** which you used while setting Up Google App. The default value is: `http://localhost:3000/login`.
 
+# Setup Social Auth
+
+1. Create a Super User by running this command: `python manage.py createsuperuser`.
+2. Login to [Django admin site](http://localhost:8000/admin/) using credentials of the previous step.
+3. Go to **Sites dashboard** in admin site. (**URL**: http://localhost:8000/admin/sites/site/).
+4. Click on `Add site` button and fill in the information as given in the image.
+
+   ![site_id](https://user-images.githubusercontent.com/56037184/109974910-0fa79b00-7d20-11eb-9826-44fdf6d770f9.png)
+   
+   **Note**: After saving this if the site id is not `2` then change the `SITE_ID` in settings.py with the new site id.
+5. After this go to **Social Applications Dashboard**. (**URL**: http://localhost:8000/admin/socialaccount/socialapp/).
+6. Add the credentials that you get after creating the Google app. Fill in the information as given in the image.
+
+   ![social_add](https://user-images.githubusercontent.com/44670961/110095166-9f058a80-7dc2-11eb-85eb-afb109f46663.png)
+   **For creating Google App & Creating ClientId & Client Secret see [this docs](https://developers.google.com/adwords/api/docs/guides/authentication#create_a_client_id_and_client_secret).**
 ## Testing
 
 To run the tests run: `python manage.py test`.

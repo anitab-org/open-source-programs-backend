@@ -1,7 +1,8 @@
 from django.conf.urls import url
-from django.urls import path
+from django.urls import include, path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+from token_auth.views.google_oauth import GoogleLogin
 from token_auth.views.register import RegisterView
 
 urlpatterns = [
@@ -14,4 +15,7 @@ urlpatterns = [
     # login URLs
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    # social-authentication
+    path("google/", GoogleLogin.as_view(), name="google_login"),
+    url(r"^accounts/", include("allauth.urls"), name="socialaccount_signup"),
 ]

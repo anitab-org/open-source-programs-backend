@@ -34,3 +34,5 @@ typed-ast==1.4.1
 urllib3==1.25.10
 wrapt==1.12.1
 zulip==0.7.0
+django-allauth==0.44.0
+dj-rest-auth==2.1.3
