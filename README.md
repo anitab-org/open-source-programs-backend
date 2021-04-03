@@ -87,7 +87,8 @@ Next follow these instructions.
    ```
    python manage.py migrate
    ```
-7. To run the server:
+7. To setup Social Auth for backend see [this](#Setup-Social-Auth).
+8. To run the server:
     ```
     python manage.py runserver
     ```
@@ -129,6 +130,8 @@ Follow the given instructions for Login into the app.
 	6. Click Create & View.
 	7. The API KEY is generated and displayed to you just once. So be sure to copy and save it somewhere.
 
+3. `GITHUB_CALLBACK_URL` - For using GitHub authentication the **Callback URL** is required by GitHub API. Add this env variable in `.env` file or export it to use **Callback URL** which you used while setting Up GitHub App. The default value is: `http://localhost:3000/login`.
+
 Add it to your .env file as follows:
 ```
 export SENDGRID_API_KEY=<your-sendgrid-api-key>
@@ -136,6 +139,18 @@ export SENDGRID_API_KEY=<your-sendgrid-api-key>
 
 3. `SECRET_KEY`  - This environment variable is required for running the backend. Add `SECRET_KEY` in `.env` file or export it by using `export SECRET_KEY=<YOUR SECRET KEY>`.
 
+# Setup Social Auth
+
+1. Create a Super User by running this command: `python manage.py createsuperuser`.
+2. Login to [Django admin site](http://localhost:8000/admin/) using credentials of the previous step.
+3. Go to **Sites dashboard** in admin site. (**URL**: http://localhost:8000/admin/sites/site/).
+4. Click on `Add site` button and fill in the information as given in the image.
+   ![site_id](https://user-images.githubusercontent.com/56037184/109974910-0fa79b00-7d20-11eb-9826-44fdf6d770f9.png)
+   **Note**: After saving this if the site id is not `1` then change the `SITE_ID` in settings.py with the new site id.
+5. After this go to **Social Applications Dashboard**. (**URL**: http://localhost:8000/admin/socialaccount/socialapp/).
+6. Add the credentials that you get after creating the GitHub app. Fill in the information as given in the image.
+   ![social_add](https://user-images.githubusercontent.com/56037184/109975941-35816f80-7d21-11eb-9a8f-205953306c83.png)
+   **For creating GitHub App see [this docs](https://docs.github.com/en/developers/apps/creating-a-github-app).**
 
 ## Testing
 
