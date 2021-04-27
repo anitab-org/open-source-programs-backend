@@ -150,6 +150,15 @@ export SENDGRID_API_KEY=<your-sendgrid-api-key>
 
 ## Testing
 
+**Test Database:** 
+    For creating a database while testing you have to give database creation permission to user `osp`. You may run the following commands:
+
+    ```
+    cd open-source-programs-backend
+    sudo -i -u postgres
+    GRANT ALL PRIVILEGES ON DATABASE test_osp to osp;
+    ALTER USER osp CREATEDB;
+    ```
 To run the tests run: `python manage.py test`.
 
 ## QA Checks

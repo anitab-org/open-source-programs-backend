@@ -8,6 +8,12 @@ def get_client():
     return Client(config_file="download")
 
 
+def get_self_zulip_id():
+    client = get_client()
+    result = client.get_profile()
+    return result["user_id"]
+
+
 def get_zulip_user(zulip_id: int) -> dict:
     """Takes the zulip user ID as an argument and returns a dictionary containing
     basic data on the Zulip user associated with that id
