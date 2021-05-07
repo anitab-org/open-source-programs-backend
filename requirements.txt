@@ -19,6 +19,7 @@ matrix-client==0.3.2
 mccabe==0.6.1
 psycopg2==2.8.5
 pycparser==2.20
+PyGithub==1.54.1
 PyJWT==1.7.1
 pylint==2.5.2
 pyOpenSSL==19.1.0

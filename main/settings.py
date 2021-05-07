@@ -108,6 +108,9 @@ else:
     EMAIL_USE_TLS = True
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
+# GitHub credentials
+GITHUB_API_KEY = os.getenv("GITHUB_API_KEY", None)
+
 AUTH_USER_MODEL = "token_auth.User"
 
 WSGI_APPLICATION = "main.wsgi.application"
